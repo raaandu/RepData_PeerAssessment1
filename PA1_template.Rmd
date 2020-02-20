@@ -2,7 +2,9 @@
 title: "RepData Week 2"
 author: "Ran Du"
 date: "19/02/2020"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -63,6 +65,7 @@ summary(mean_steps_new$x)
 ## Are there differences in activity patterns between weekdays and weekends?
 ```{r}
 library(lubridate)
+
 activity_copy$week <- ifelse(wday(activity_copy$date) %in% c(6,7), "weekend", "weekday")
 mean_steps_week_interval <- aggregate(activity_copy[, 1], list(activity_copy$week, activity_copy$interval), mean)
 
@@ -73,7 +76,5 @@ ggplot(mean_steps_week_interval, aes(x = Group.2, y = x)) +
     xlab("interval") + 
     ylab("mean steps")
 ```
-
-
 
 
